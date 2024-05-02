@@ -10,7 +10,7 @@ jobs:
             uses: actions/checkout@v3
 
           - name: download gcc
-            run: apt install build-essential
+            run: sudo apt install build-essential
             # run: apt-get add --no-cache gcc musl-dev linux-headers
         
           - name: install dependencies
