@@ -18,7 +18,7 @@ jobs:
                  pip install --user gunicorn
 
           - name: run your app
-            run: gunicorn -w 1 -b 0.0.0.0:5000 app.py:app -- daemon
+            run: gunicorn -w 1 -b 0.0.0.0:5000 app:app -- daemon
             
 
           - name: get output printed
