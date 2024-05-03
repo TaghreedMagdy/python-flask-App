@@ -15,6 +15,7 @@ jobs:
           - name: build the image
             uses: docker/build-push-action@v3
             with:
+              load: true
               tags: taghridteetee/pyapp
           
           - name: create container
