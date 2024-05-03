@@ -19,7 +19,9 @@ jobs:
             run: docker run -d -it redis:alpine
           
           - name: create container
-            run: docker run -d -p 9000:5000 simplex
+            run: |
+              docker run -d -p 9000:5000 simplex
+              curl http://localhost:9000
 
           - name: get output printed
             run: curl http://localhost:9000
