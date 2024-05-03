@@ -10,7 +10,7 @@ jobs:
             uses: actions/checkout@v3
 
           - name: build the image
-            run: docker-compose -d up
+            run: docker-compose up -d
 
           - name: check server response
             run: curl http://localhost:9000
