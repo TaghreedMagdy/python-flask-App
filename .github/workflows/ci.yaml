@@ -9,17 +9,17 @@ jobs:
           - name: code checkout
             uses: actions/checkout@v3
 
-          - name: build the image
-            uses: docker/setup-buildx-action@v2
+          # - name: build the image
+          #   uses: docker/setup-buildx-action@v2
 
           - name: build the image
-            uses: docker/build-push-action@v3
-            with:
-              load: true
-              tags: taghridteetee/pyapp
+            run: docker build -t simplex .
+
+          - name: run redis
+            run: docker run -d -it redis:alpine
           
           - name: create container
-            run: docker run -d taghridteetee/pyapp
+            run: docker run -d simplex
 
           - name: get output printed
             run: curl http://localhost:5000
