@@ -9,18 +9,16 @@ jobs:
           - name: code checkout
             uses: actions/checkout@v3
 
-          - name: download gcc
-            run: sudo apt install build-essential
-            # run: apt-get add --no-cache gcc musl-dev linux-headers
-        
-          - name: install dependencies
-            run: |
-                 pip install -r requirements.txt 
-                 pip install --user gunicorn
+          - name: build the image
+            uses: actions/setup-buildx-action@v2
 
-          - name: run your app
-            run: gunicorn -w 4 -b 0.0.0.0:5000 app:app -- daemon
-            
+          - name: build the image
+            uses: docker/build-push-action@v3
+            with:
+              tags: taghridteetee/pyapp
+          
+          - name: create container
+            run: docker run -d taghridteetee/pyapp
 
           - name: get output printed
             run: curl http://localhost:5000
