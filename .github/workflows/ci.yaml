@@ -9,21 +9,8 @@ jobs:
           - name: code checkout
             uses: actions/checkout@v3
 
-          # - name: build the image
-          #   uses: docker/setup-buildx-action@v2
-
           - name: build the image
-            run: docker build -t simplex .
+            run: docker-compose -d up
 
-          - name: run redis
-            run: docker run -d -it redis:alpine
-          
-          - name: create container
-            run: |
-              docker run -d -p 9000:5000 simplex
-              curl http://localhost:9000
-
-          - name: get output printed
+          - name: check server response
             run: curl http://localhost:9000
-            
-            
